@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">FireBaseAdapter</string>
+
+    <array name="genres_items">
+        <item>first_item</item>
+        <item>second_item</item>
+        <item>third_item</item>
+        <item>fourth_item</item>
+        <item>fifth_item</item>
+        <item>sixth_item</item>
+        <item>seventh_item</item>
+    </array>
+
+</resources>
