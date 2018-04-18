@@ -1,9 +1,11 @@
 package com.example.tarasvolianskyi.firebaseadapter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -20,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String USER_NAME = "userName";
+    public static final String USER_ID = "userId";
 
     EditText editTextUser;
     Button btnAddUser;
@@ -68,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        lvUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                UsersPojo usersPojo = usersPojoList.get(position);
+                Intent intent = new Intent(getApplicationContext(), AddOptionActivity.class);
+                intent.putExtra(USER_ID, usersPojo.getUserId());
+                intent.putExtra(USER_NAME, usersPojo.getUserName());
+                startActivity(intent);
             }
         });
     }
