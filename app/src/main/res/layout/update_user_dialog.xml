@@ -26,6 +26,14 @@
     <Button
         android:id="@+id/btn_click_for_update_user_update_dialog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Update"/>
+
+    <Button
+        android:id="@+id/btn_click_for_delete_user_update_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete"/>
+
 
 </LinearLayout>

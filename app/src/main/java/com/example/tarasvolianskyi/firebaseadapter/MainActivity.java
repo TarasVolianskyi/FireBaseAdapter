@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         //final TextView textViewName = (TextView) dialogView.findViewById(R.id.tv_name_of_user_update_dialog);
         final EditText editTextName = (EditText) dialogView.findViewById(R.id.et_new_name_of_user_update_dialog);
         final Button btnUpdate = (Button) dialogView.findViewById(R.id.btn_click_for_update_user_update_dialog);
+        final Button btnDelete = (Button) dialogView.findViewById(R.id.btn_click_for_delete_user_update_dialog);
         final Spinner spinnerCategoriesDialUptd = (Spinner) dialogView.findViewById(R.id.spinner_categories_of_user_update_dialog);
         dialogBuilder.setTitle("Updating of user" + userName);
         final AlertDialog alertDialog = dialogBuilder.create();
@@ -127,7 +128,21 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.dismiss();
             }
         });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteUser(userId);
+            }
+        });
 
+    }
+
+    private void deleteUser(String userId) {
+        DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("user").child(userId);
+        DatabaseReference dbrefOptions = FirebaseDatabase.getInstance().getReference("options").child("option_" + userId);
+        dbrefUser.removeValue();
+        dbrefOptions.removeValue();
+        Toast.makeText(this, "Deleted successfully", Toast.LENGTH_SHORT).show();
     }
 
     private boolean updateUser(String id, String name, String category) {
